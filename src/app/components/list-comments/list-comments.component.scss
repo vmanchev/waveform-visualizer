@@ -1,0 +1,13 @@
+.comments {
+  list-style-type: none;
+  padding-left: 0;
+
+  &__delete {
+    color: red;
+    font-weight: bold;
+    font-size: 20px;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
