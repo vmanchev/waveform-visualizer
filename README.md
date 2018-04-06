@@ -14,8 +14,13 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Running unit tests
 
-Currently the tests will fail. I didn't have the time to do it.
+Run `ng test -sr` to start the tests once.
+Run `ng test -sr -cc` to generate the code coverage report. It can be found under the **coverage** folder.
+
+Current code coverage: 91.61%
+
+There is some disconnect issue with Karma/Chrome, that is why the CreateComment component test is not included.
 
 ## Known issues:
 1. Time indicator and comments popup will not hide sometimes.
-2. There are unit tests for CallsService and VisualizerComponent.
+2. Unit test for CreateComment.

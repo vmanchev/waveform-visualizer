@@ -42,29 +42,24 @@ describe('VisualizerComponent', () => {
     fixture = TestBed.createComponent(VisualizerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+
+    spyOn(component.callsService, 'getWavedata').and.callThrough();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  describe('$ngOnInit', () => {
+  it('should use callsService to get the wavedata', fakeAsync(() => {
+    component.ngOnInit();
 
-    beforeEach(() => {
-      spyOn(component.callsService, 'getWavedata').and.callThrough();
-    });
+    expect(component.callsService.getWavedata).toHaveBeenCalled();
 
-    it('should use callsService to get the wavedata', fakeAsync(() => {
-      component.ngOnInit();
+    flush();
+    fixture.detectChanges();
 
-      expect(component.callsService.getWavedata).toHaveBeenCalled();
+    expect(component.wavedata).toEqual(wavedataResponseMock);
 
-      flush();
-      fixture.detectChanges();
+  }));
 
-      expect(component.wavedata).toEqual(wavedataResponseMock);
-
-    }));
-
-  });
 });
