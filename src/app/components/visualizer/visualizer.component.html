@@ -15,6 +15,7 @@
     </div>
   </div>
 
+  <app-create-comment [talkMoment]="talkMoment" *ngIf="showCommentForm && talkMoment"></app-create-comment>
   <app-time-indicator [talkMoment]="talkMoment"></app-time-indicator>
 
 </div>

@@ -5,5 +5,8 @@
     }
     &__track {
         margin-bottom: 15px;
+        .col {
+            padding: 0 !important;
+        }
     }
 }

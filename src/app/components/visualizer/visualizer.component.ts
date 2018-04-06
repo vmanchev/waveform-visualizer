@@ -14,6 +14,7 @@ export class VisualizerComponent implements OnInit {
   public wavedata: Wavedata;
   public totalTime: number;
   public talkMoment: TalkMoment;
+  public showCommentForm = false;
 
   @ViewChild('titleText') titleTextElement;
 
@@ -97,7 +98,10 @@ export class VisualizerComponent implements OnInit {
    * @param customerTime
    */
   tranckClick(e, customerTime) {
-    console.log(this.talkMoment);
+    this.showCommentForm = true;
   }
 
+  resetIndicator() {
+    this.talkMoment = null;
+  }
 }
