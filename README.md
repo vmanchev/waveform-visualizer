@@ -17,6 +17,5 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 Currently the tests will fail. I didn't have the time to do it.
 
 ## Known issues:
-1. Comments listing is not ready, didn't have enough time.
-2. Time indicator and comments popup will not hide sometimes.
-3. There are unit tests for CallsService and VisualizerComponent.
+1. Time indicator and comments popup will not hide sometimes.
+2. There are unit tests for CallsService and VisualizerComponent.
