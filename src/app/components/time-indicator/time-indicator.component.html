@@ -1,0 +1,8 @@
+<div *ngIf="talkMoment" class="talk-moment">
+
+  <div [style.marginLeft.px]="talkMoment.currentPosition - 66" class="talk-moment__container">
+    <div class="talk-moment__vertical">&nbsp;</div>
+    <span class=talk-moment__time>{{ talkMoment.timeLabel }}</span>
+  </div>
+
+</div>
