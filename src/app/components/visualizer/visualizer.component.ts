@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { CallsService } from '../../services/calls-service.service';
 import { Wavedata } from '../../models/wavedata.model';
+import { TalkMoment } from '../../models/talk-moment.model';
 import * as _ from 'lodash';
 
 @Component({
@@ -12,7 +13,7 @@ export class VisualizerComponent implements OnInit {
 
   public wavedata: Wavedata;
   public totalTime: number;
-  public timeLabel: string;
+  public talkMoment: TalkMoment;
 
   @ViewChild('titleText') titleTextElement;
 
@@ -84,7 +85,9 @@ export class VisualizerComponent implements OnInit {
     const seconds = d.getSeconds();
     const secondsLabel = d.getSeconds() < 10 ? '0' + d.getSeconds() : d.getSeconds();
 
-    this.timeLabel = d.getMinutes() + ':' + secondsLabel;
+    const timeLabel = d.getMinutes() + ':' + secondsLabel;
+
+    this.talkMoment = new TalkMoment(currentMoment, currentPosition, timeLabel);
   }
 
 
@@ -94,7 +97,7 @@ export class VisualizerComponent implements OnInit {
    * @param customerTime
    */
   tranckClick(e, customerTime) {
-    console.log(this.timeLabel);
+    console.log(this.talkMoment);
   }
 
 }
