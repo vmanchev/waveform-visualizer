@@ -1,0 +1,5 @@
+<ul *ngIf="comments" class="comments">
+  <li *ngFor="let comment of comments">
+    [{{comment.talkMoment.timeLabel}}] {{comment.text}} <span class="comments__delete" (click)="deleteComment(comment)">X</span>
+  </li>
+</ul>

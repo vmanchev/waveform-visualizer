@@ -1,7 +1,8 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input, Output, OnChanges } from '@angular/core';
 import { TalkMoment } from '../../models/talk-moment.model';
 import { Comment } from '../../models/comment.model';
 import { CommentsService } from '../../services/comments.service';
+import { CommentsProxyService } from '../../services/comments-proxy.service';
 
 @Component({
   selector: 'app-create-comment',
@@ -12,10 +13,11 @@ export class CreateCommentComponent implements OnChanges {
 
   @Input() talkMoment: TalkMoment;
   public commentText: string;
-  public comment: Comment;
+  @Output() comment: Comment;
 
   constructor(
-    public commentsService: CommentsService
+    public commentsService: CommentsService,
+    public commentsProxyService: CommentsProxyService
   ) { }
 
   ngOnChanges() {
@@ -30,7 +32,10 @@ export class CreateCommentComponent implements OnChanges {
     }
 
     this.commentsService.save(this.comment);
+    this.commentsProxyService.set(this.comment);
+
     this.comment = new Comment();
+    this.comment.talkMoment = this.talkMoment;
   }
 
 }

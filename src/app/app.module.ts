@@ -6,9 +6,11 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { CallsService } from './services/calls-service.service';
 import { CommentsService } from './services/comments.service';
+import { CommentsProxyService } from './services/comments-proxy.service';
 import { VisualizerComponent } from './components/visualizer/visualizer.component';
 import { TimeIndicatorComponent } from './components/time-indicator/time-indicator.component';
 import { CreateCommentComponent } from './components/create-comment/create-comment.component';
+import { ListCommentsComponent } from './components/list-comments/list-comments.component';
 
 
 @NgModule({
@@ -16,7 +18,8 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
     AppComponent,
     VisualizerComponent,
     TimeIndicatorComponent,
-    CreateCommentComponent
+    CreateCommentComponent,
+    ListCommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +28,8 @@ import { CreateCommentComponent } from './components/create-comment/create-comme
   ],
   providers: [
     CallsService,
-    CommentsService
+    CommentsService,
+    CommentsProxyService
   ],
   bootstrap: [AppComponent]
 })
