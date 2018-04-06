@@ -1,0 +1,10 @@
+<div *ngIf="wavedata">
+  <div style="max-height: 50px;">
+    <div *ngFor="let customerTime of wavedata.talkTimes.customer" [style.marginLeft.%]="customerTime[3]" [style.width.%]="customerTime[2]"
+      [style.background]="'red'" style="border:  thin solid red; box-sizing: border-box; position: absolute; " (mousemove)="trackHover($event)" (click)="tranckClick($event, customerTime)">&nbsp;</div>
+  </div>
+  <div>
+    <div *ngFor="let userTime of wavedata.talkTimes.user" [style.marginLeft.%]="userTime[3]" [style.width.%]="userTime[2]"
+      [style.background]="'green'" style="border:  thin solid green; box-sizing: border-box; position: absolute; top: 40px;">&nbsp;</div>
+  </div>
+</div>
