@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 @Component({
   selector: 'app-visualizer',
   templateUrl: './visualizer.component.html',
-  styleUrls: ['./visualizer.component.css']
+  styleUrls: ['./visualizer.component.scss']
 })
 export class VisualizerComponent implements OnInit {
 
@@ -22,72 +22,36 @@ export class VisualizerComponent implements OnInit {
       (result: Wavedata) => {
         this.wavedata = result;
         this.totalTime = this.wavedata.talkTimes.customer.pop()[1];
-let ct = 0;
-        this.wavedata.talkTimes.customer = _.map(this.wavedata.talkTimes.customer, (item) => {
 
-          item.sort((a, b) => a - b);
+        this.wavedata.talkTimes.customer = _.map(this.wavedata.talkTimes.customer, this.collectionCals.bind(this));
+        this.wavedata.talkTimes.user = _.map(this.wavedata.talkTimes.user, this.collectionCals.bind(this));
 
-          // item width, %
-          item.push((item[1] - item[0]) / this.totalTime * 100 / 2);
-
-          // distance from beginning, %
-          if (item[0] === 0) {
-            item.push(0);
-          } else {
-            item.push(item[0] / this.totalTime * 100 / 2);
-          }
-
-          ct += item[2];
-
-          return item;
-        });
-console.log('ct', ct);
-console.log(this.wavedata.talkTimes.customer);
-let ut = 0;
-        this.wavedata.talkTimes.user = _.map(this.wavedata.talkTimes.user, (item) => {
-
-          item.sort((a, b) => a - b);
-
-          // item width, %
-          item.push((item[1] - item[0]) / this.totalTime * 100 / 2);
-
-          // distance from beginning, %
-          if (item[0] === 0) {
-            item.push(0);
-          } else {
-            item.push(item[0] / this.totalTime * 100 / 2);
-          }
-          ut += item[2];
-          return item;
-        });
-console.log('ut', ut)        ;
-
-        // this.wavedata.talkTimes.user = _.map(this.wavedata.talkTimes.user, this.collectionCals);
-
-        //        console.log(this.wavedata.talkTimes.customer);
       }
     );
   }
 
-  collectionCals(v, i, c) {
+  collectionCals(item, idx, collection) {
 
-    v.push((v[1] * 1000 - v[0] * 1000) / this.totalTime * 100000);
+    item.sort((a, b) => a - b);
 
-    // if (i === 0) {
-    //   v.push(0);
-    // } else {
-    //   v.push(v[0] - c[i - 1][1]);
-    // }
+    // talk length
+    item.push((item[1] - item[0]) / this.totalTime * 100);
 
-    return v;
+    // distance from prev, %
+    if (item[0] === 0) {
+      item.push(0);
+    } else {
+      item.push((item[0] - collection[idx - 1][1]) / this.totalTime * 100);
+    }
+    return item;
   }
 
-  trackHover(e) {
-console.log(e.clientX);
+  trackMove(e) {
+    console.log('move', e, e.clientX);
   }
 
   tranckClick(e, customerTime) {
-console.log('click', e, customerTime);
+    console.log('click', e, customerTime);
   }
 
 }
