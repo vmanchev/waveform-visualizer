@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { TalkMoment } from '../../models/talk-moment.model';
 
 @Component({
@@ -13,7 +13,7 @@ export class TimeIndicatorComponent implements OnChanges {
   constructor() { }
 
   ngOnChanges() {
-    console.log(this.talkMoment);
+
   }
 
 }
