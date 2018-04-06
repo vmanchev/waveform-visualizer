@@ -25,6 +25,11 @@ export class VisualizerComponent implements OnInit {
   ngOnInit() {
     this.callsService.getWavedata().subscribe(
       (result: Wavedata) => {
+
+        if (!result || !result.talkTimes || !result.talkTimes.customer.length) {
+          return;
+        }
+
         this.wavedata = result;
         this.totalTime = this.wavedata.talkTimes.customer.pop()[1];
 
